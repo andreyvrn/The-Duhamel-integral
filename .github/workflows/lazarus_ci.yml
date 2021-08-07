@@ -27,8 +27,7 @@ jobs:
       with:
         lazarus-version: "dist"
     - run: lazbuild project1.lpi
-    - run: project1.exe
-    
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
