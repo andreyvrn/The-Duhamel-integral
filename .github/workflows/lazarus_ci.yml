@@ -33,7 +33,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: my-artifact
+        name: project1.exe
         path: project1.exe
         retention-days: 5
         
