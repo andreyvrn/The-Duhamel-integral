@@ -22,20 +22,9 @@ jobs:
         name: package
         path: Duhamel_integral.exe
         retention-days: 5
-  release:
-    name: Publish release
-    runs-on: windows-latest
-    needs: [build]
-    if: startsWith(github.ref, 'refs/tags/')
-    steps:
-      - name: Download
-        uses: actions/download-artifact@v2
-        with:
-          name: package
-          path: Duhamel_integral.exe
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: D:\a\The-Duhamel-integral\The-Duhamel-integral\Duhamel_integral.exe
-        env:
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+          files: Duhamel_integral.exe
+      env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
