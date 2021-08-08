@@ -30,6 +30,7 @@ jobs:
       with:
         lazarus-version: "dist"
     - run: lazbuild Duhamel_integral.lpi
+    - run: DIR
        
   release:
   
@@ -38,6 +39,7 @@ jobs:
     needs: [build]
     
     steps:
+        - run: DIR
         - name: Upload Artifact
           uses: actions/upload-artifact@v2
           with:
