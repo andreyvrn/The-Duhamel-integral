@@ -38,4 +38,3 @@ jobs:
         with:
           run: DIR
           files: Duhamel_integral.exe
-          run: DIR
