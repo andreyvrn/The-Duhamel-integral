@@ -36,4 +36,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: D:\a\The-Duhamel-integral\The-Duhamel-integral
+          files: Duhamel_integral.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
