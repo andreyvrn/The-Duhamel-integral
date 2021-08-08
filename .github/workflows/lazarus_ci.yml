@@ -36,5 +36,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          run: DIR
-          files: Duhamel_integral.exe
+          files: D:\a\The-Duhamel-integral\The-Duhamel-integral
