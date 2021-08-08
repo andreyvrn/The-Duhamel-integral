@@ -6,20 +6,29 @@ object Form1: TForm1
   Caption = 'Входной и выходной сигнал'
   ClientHeight = 579
   ClientWidth = 1040
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '2.2.0.1'
   object Chart1: TChart
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Button1
     Left = 0
     Height = 240
     Top = 0
     Width = 1040
     AxisList = <    
       item
+        Marks.LabelBrush.Style = bsClear
         Minors = <>
         Title.LabelFont.Orientation = 900
+        Title.LabelBrush.Style = bsClear
       end    
       item
         Alignment = calBottom
+        Marks.LabelBrush.Style = bsClear
         Minors = <>
+        Title.LabelBrush.Style = bsClear
       end>
     BackColor = clLime
     Foot.Brush.Color = clBtnFace
@@ -29,6 +38,7 @@ object Form1: TForm1
     Title.Text.Strings = (
       'TAChart'
     )
+    Anchors = [akTop, akLeft, akRight]
     Color = clLime
     object Chart1LineSeries1: TLineSeries
       LinePen.Color = clFuchsia
@@ -42,9 +52,12 @@ object Form1: TForm1
     end
   end
   object Button1: TButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Chart1
+    AnchorSideTop.Side = asrBottom
     Left = 0
     Height = 32
-    Top = 256
+    Top = 240
     Width = 200
     Caption = 'Чертить первый сигнал'
     Font.CharSet = RUSSIAN_CHARSET
@@ -58,10 +71,15 @@ object Form1: TForm1
     TabOrder = 1
   end
   object Button2: TButton
+    AnchorSideTop.Control = Chart1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
     Left = 840
     Height = 32
-    Top = 256
+    Top = 240
     Width = 200
+    Anchors = [akTop, akRight]
     Caption = 'Чертить второй сигнал'
     Font.CharSet = RUSSIAN_CHARSET
     Font.Height = -13
@@ -74,10 +92,14 @@ object Form1: TForm1
     TabOrder = 2
   end
   object Label1: TLabel
-    Left = 680
-    Height = 31
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = StringGrid1
+    AnchorSideRight.Side = asrBottom
+    Left = 717
+    Height = 32
     Top = 545
-    Width = 353
+    Width = 323
+    Anchors = [akRight]
     Caption = 'Автор: Студент Студент'
     Font.CharSet = RUSSIAN_CHARSET
     Font.Color = clLime
@@ -86,15 +108,20 @@ object Form1: TForm1
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsItalic]
-    ParentColor = False
     ParentFont = False
     OnClick = Label1Click
   end
   object StringGrid1: TStringGrid
+    AnchorSideTop.Control = Button1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Label1
     Left = 0
-    Height = 288
-    Top = 288
-    Width = 664
+    Height = 273
+    Top = 272
+    Width = 1040
+    Anchors = [akTop, akLeft, akRight, akBottom]
     BorderStyle = bsNone
     Color = 4259584
     ColCount = 4
