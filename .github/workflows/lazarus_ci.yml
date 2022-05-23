@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3.0.2
-    - uses: gcarreno/setup-lazarus@v3.0.16
+    - uses: gcarreno/setup-lazarus@v3.0.17
       with:
         lazarus-version: "dist"
     - run: lazbuild Duhamel_integral.lpi
