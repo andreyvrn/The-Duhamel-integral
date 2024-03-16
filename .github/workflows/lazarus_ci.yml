@@ -23,7 +23,7 @@ jobs:
         path: Duhamel_integral.exe
         retention-days: 5
     - name: Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
           files: Duhamel_integral.exe
