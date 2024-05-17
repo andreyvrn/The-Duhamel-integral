@@ -11,7 +11,7 @@ jobs:
     name: Build package
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v4.1.2
+    - uses: actions/checkout@v4.1.6
     - uses: gcarreno/setup-lazarus@v3.2
       with:
         lazarus-version: "dist"
