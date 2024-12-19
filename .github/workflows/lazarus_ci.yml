@@ -17,7 +17,7 @@ jobs:
         lazarus-version: "dist"
     - run: lazbuild Duhamel_integral.lpi
     - name: Upload Artifact
-      uses: actions/upload-artifact@v4.4.3
+      uses: actions/upload-artifact@v4.5.0
       with:
         name: package
         path: Duhamel_integral.exe
