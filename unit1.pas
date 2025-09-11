@@ -79,61 +79,60 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  T,x,n:double;
-  c,y:longint;
+  T, x, step: double;
+  c, y: longint;
 begin
-  Chart1LineSeries1.clear;
-  n:=0.00005;
-  x:=0;
-  y:=0;
-  T:=0.005;
-  c:=Trunc(T/(n))+1;
+  Chart1LineSeries1.Clear;
+  step := 0.00005;
+  x := 0;
+  y := 0;
+  T := 0.005;
+  c := Trunc(T / step) + 1;
 
-while x+n <= T do begin
-x:=x+n;
-y:=y+1;
-StringGrid1.Cells[0,y]:= FloatToStr(y);
-if  x <= T/2 then
- begin
-   StringGrid1.Cells[1,y]:= FloatToStr(x);
-  StringGrid1.Cells[2,y]:= FloatToStr( 1-exp(-(6*x)/0.005));
-  Chart1LineSeries1.AddXY(X,1-exp(-(6*x)/0.005));
- end;
-if  x >= T/2 then
- begin
-  StringGrid1.Cells[1,y]:= FloatToStr(x);
-  StringGrid1.Cells[2,y]:= FloatToStr((1-0.04978706837)*exp(-(6*x/0.005-3)*(6*x/0.005-3)));
-  Chart1LineSeries1.AddXY(X,(1-0.04978706837)*exp(-(6*x/0.005-3)*(6*x/0.005-3)));
-end;
-end;
+  while x + step <= T do
+  begin
+    x := x + step;
+    y := y + 1;
+    StringGrid1.Cells[0, y] := FloatToStr(y);
+    if x <= T / 2 then
+    begin
+      StringGrid1.Cells[1, y] := FloatToStr(x);
+      StringGrid1.Cells[2, y] := FloatToStr(1 - exp(-(6 * x) / 0.005));
+      Chart1LineSeries1.AddXY(x, 1 - exp(-(6 * x) / 0.005));
+    end;
+    if x >= T / 2 then
+    begin
+      StringGrid1.Cells[1, y] := FloatToStr(x);
+      StringGrid1.Cells[2, y] := FloatToStr((1 - 0.04978706837) * exp(-(6 * x / 0.005 - 3) * (6 * x / 0.005 - 3)));
+      Chart1LineSeries1.AddXY(x, (1 - 0.04978706837) * exp(-(6 * x / 0.005 - 3) * (6 * x / 0.005 - 3)));
+    end;
+  end;
 
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-Chart1LineSeries2.clear;
-  begin
+  Chart1LineSeries2.Clear;
 
-
-st := tr / n; t := 0;
+  st := tr / n;
+  t := 0;
   npp := 0;
-  while t+st < (tr/2 ) do
+  while t + st < (tr / 2) do
   begin
     npp := npp + 1;
-     StringGrid1.Cells[3,npp]:= FloatToStr(integral(1, t, 0, otr, t));
-    Chart1LineSeries2.AddXY(t,integral(1, t, 0, otr, t));
+    StringGrid1.Cells[3, npp] := FloatToStr(integral(1, t, 0, otr, t));
+    Chart1LineSeries2.AddXY(t, integral(1, t, 0, otr, t));
     t := t + st;
   end;
-   while t+st <= 0.005 do
+  while t + st <= 0.005 do
   begin
     npp := npp + 1;
-     StringGrid1.Cells[3,npp]:= FloatToStr(integral(1, tr / 2, 0, otr, t) + integral(2, t, tr / 2, otr, t) );
-       Chart1LineSeries2.AddXY(t, integral(1, tr / 2,0, otr, t)+integral(2, t, tr/2, otr, t) );
+    StringGrid1.Cells[3, npp] :=
+      FloatToStr(integral(1, tr / 2, 0, otr, t) + integral(2, t, tr / 2, otr, t));
+    Chart1LineSeries2.AddXY(t,
+      integral(1, tr / 2, 0, otr, t) + integral(2, t, tr / 2, otr, t));
     t := t + st;
   end;
-
-
-end;
 end;
 
 procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: char);
