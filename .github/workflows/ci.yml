@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest, ubuntu-latest, macos-12]
 
     steps:
       - uses: actions/checkout@v5
@@ -31,7 +31,11 @@ jobs:
         run: |
           if [ -f tests/TestProject.lpi ]; then
             lazbuild tests/TestProject.lpi
-            ./tests/TestProject || exit 1
+            test_exec="./tests/TestProject"
+            if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+              test_exec="${test_exec}.exe"
+            fi
+            $test_exec || exit 1
           else
             echo "No tests found, skipping."
           fi
@@ -44,7 +48,11 @@ jobs:
           elif [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
             tar -czf Duhamel_integral-linux.tar.gz Duhamel_integral
           else
-            tar -czf Duhamel_integral-macos.tar.gz Duhamel_integral
+            if [ -d Duhamel_integral.app ]; then
+              tar -czf Duhamel_integral-macos.tar.gz Duhamel_integral.app
+            else
+              tar -czf Duhamel_integral-macos.tar.gz Duhamel_integral
+            fi
           fi
         shell: bash
 
