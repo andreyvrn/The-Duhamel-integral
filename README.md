@@ -1,29 +1,31 @@
-# The-Duhamel-integral
+# Duhamel Integral
 
-Приложение на Free Pascal вычисляет интеграл Дюамеля для заданного входного
-сигнала и отображает результаты в виде таблицы и графиков.
+[![CI Lazarus](https://github.com/andreyvrn/The-Duhamel-integral/actions/workflows/ci.yml/badge.svg)](https://github.com/andreyvrn/The-Duhamel-integral/actions/workflows/ci.yml)
+[![GitHub release](https://img.shields.io/github/v/release/andreyvrn/The-Duhamel-integral?include_prereleases&sort=semver)](https://github.com/andreyvrn/The-Duhamel-integral/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/andreyvrn/The-Duhamel-integral/total.svg)](https://github.com/andreyvrn/The-Duhamel-integral/releases)
+[![License](https://img.shields.io/github/license/andreyvrn/The-Duhamel-integral)](LICENSE)
 
-## Алгоритм
+## 📖 Описание
+Программа для вычислений по методу Дюамеля.
 
-Интеграл Дюамеля вычисляется методом Симпсона. Сигнал описывается
-кусочно-заданной функцией и умножается на ядро, содержащее сумму экспонент.
-Расчётная логика собрана в модуле `calculations.pas`, а форма `unit1.pas`
-отвечает только за взаимодействие с пользовательским интерфейсом.
+## 📥 Установка
 
-## Структура проекта
+Скачайте последнюю версию из [Releases](https://github.com/andreyvrn/The-Duhamel-integral/releases/latest).
 
-- `unit1.pas` — код графического интерфейса и отображение результатов
-- `calculations.pas` — функции и константы для вычисления сигнала и интеграла
-- `Duhamel_integral.lpr` — основной файл проекта Lazarus
+### Windows
+[⬇️ Скачать Duhamel_integral-windows.zip](https://github.com/andreyvrn/The-Duhamel-integral/releases/latest/download/Duhamel_integral-windows.zip)
 
-## Запуск
+### Linux
+[⬇️ Скачать Duhamel_integral-linux.tar.gz](https://github.com/andreyvrn/The-Duhamel-integral/releases/latest/download/Duhamel_integral-linux.tar.gz)
 
-Для компиляции требуется среда Lazarus или компилятор Free Pascal. Собрать
-проект можно командой:
+### macOS
+[⬇️ Скачать Duhamel_integral-macos.tar.gz](https://github.com/andreyvrn/The-Duhamel-integral/releases/latest/download/Duhamel_integral-macos.tar.gz)
 
-```bash
-fpc Duhamel_integral.lpr
-```
+### Nightly build
+[⬇️ Скачать nightly](https://github.com/andreyvrn/The-Duhamel-integral/releases/tag/nightly)
 
-Запустите получившийся исполняемый файл и используйте кнопки на форме для
-построения графиков входного сигнала и интеграла.
+## ▶️ Использование
+
+### Windows
+```powershell
+Duhamel_integral.exe
