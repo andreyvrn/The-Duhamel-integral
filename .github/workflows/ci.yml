@@ -15,10 +15,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest, ubuntu-latest, macos-13]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
 
       - uses: gcarreno/setup-lazarus@v3
         with:
@@ -70,7 +70,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ./artifacts/**/*
-          body: ${{ github.event.release.body }}
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
