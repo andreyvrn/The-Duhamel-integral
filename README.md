@@ -18,6 +18,9 @@
 ### Linux
 [⬇️ Скачать Duhamel_integral-linux.tar.gz](https://github.com/andreyvrn/The-Duhamel-integral/releases/latest/download/Duhamel_integral-linux.tar.gz)
 
+### macOS
+[⬇️ Скачать Duhamel_integral-macos.tar.gz](https://github.com/andreyvrn/The-Duhamel-integral/releases/latest/download/Duhamel_integral-macos.tar.gz)
+
 ### Nightly build
 [⬇️ Скачать nightly](https://github.com/andreyvrn/The-Duhamel-integral/releases/tag/nightly)
 
@@ -26,3 +29,9 @@
 ### Windows
 ```powershell
 Duhamel_integral.exe
+```
+
+### macOS
+```bash
+./Duhamel_integral
+```

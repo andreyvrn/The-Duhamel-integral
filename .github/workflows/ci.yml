@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest]
+        os: [windows-latest, ubuntu-latest, macos-13]
 
     steps:
       - uses: actions/checkout@v5
@@ -45,8 +45,10 @@ jobs:
         run: |
           if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
             7z a Duhamel_integral-windows.zip Duhamel_integral.exe
-          else
+          elif [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
             tar -czf Duhamel_integral-linux.tar.gz Duhamel_integral
+          else
+            tar -czf Duhamel_integral-macos.tar.gz Duhamel_integral
           fi
         shell: bash
 
