@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest, ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v5
@@ -41,20 +41,14 @@ jobs:
           fi
         shell: bash
 
-      - name: Package binary
-        run: |
-          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-            7z a Duhamel_integral-windows.zip Duhamel_integral.exe
-          elif [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
-            tar -czf Duhamel_integral-linux.tar.gz Duhamel_integral
-          else
-            if [ -d Duhamel_integral.app ]; then
-              tar -czf Duhamel_integral-macos.tar.gz Duhamel_integral.app
+        - name: Package binary
+          run: |
+            if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+              7z a Duhamel_integral-windows.zip Duhamel_integral.exe
             else
-              tar -czf Duhamel_integral-macos.tar.gz Duhamel_integral
+              tar -czf Duhamel_integral-linux.tar.gz Duhamel_integral
             fi
-          fi
-        shell: bash
+          shell: bash
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
