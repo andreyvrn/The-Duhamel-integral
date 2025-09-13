@@ -21,7 +21,6 @@ function Integral(upperBound, lowerBound: double; segments: word; Time: double):
 
 implementation
 
-uses Math;
 
 function InputSignal(Time: double): double;
 var

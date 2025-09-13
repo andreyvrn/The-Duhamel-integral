@@ -47,7 +47,7 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="MainForm"/>
+        <UnitName Value="MainFormUnit"/>
       </Unit1>
       <Unit2>
         <Filename Value="calculations.pas"/>
