@@ -1,4 +1,4 @@
-object Form1: TForm1
+object MainForm: TMainForm
   Left = 378
   Height = 579
   Top = 165
@@ -7,12 +7,12 @@ object Form1: TForm1
   ClientHeight = 579
   ClientWidth = 1040
   LCLVersion = '2.2.0.1'
-  object Chart1: TChart
+  object SignalChart: TChart
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = Button1
+    AnchorSideBottom.Control = PlotInputButton
     Left = 0
     Height = 240
     Top = 0
@@ -40,20 +40,20 @@ object Form1: TForm1
     )
     Anchors = [akTop, akLeft, akRight]
     Color = clLime
-    object Chart1LineSeries1: TLineSeries
+    object InputSeries: TLineSeries
       LinePen.Color = clFuchsia
       LinePen.Style = psDot
       LinePen.Width = 4
     end
-    object Chart1LineSeries2: TLineSeries
+    object OutputSeries: TLineSeries
       LinePen.Color = 4227327
       LinePen.Style = psDot
       LinePen.Width = 4
     end
   end
-  object Button1: TButton
+  object PlotInputButton: TButton
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = Chart1
+    AnchorSideTop.Control = SignalChart
     AnchorSideTop.Side = asrBottom
     Left = 0
     Height = 32
@@ -66,12 +66,12 @@ object Form1: TForm1
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold, fsItalic]
-    OnClick = Button1Click
+    OnClick = PlotInputButtonClick
     ParentFont = False
     TabOrder = 1
   end
-  object Button2: TButton
-    AnchorSideTop.Control = Chart1
+  object PlotOutputButton: TButton
+    AnchorSideTop.Control = SignalChart
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
@@ -87,13 +87,13 @@ object Form1: TForm1
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold, fsItalic]
-    OnClick = Button2Click
+    OnClick = PlotOutputButtonClick
     ParentFont = False
     TabOrder = 2
   end
-  object Label1: TLabel
+  object AuthorLabel: TLabel
     AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = StringGrid1
+    AnchorSideRight.Control = DataGrid
     AnchorSideRight.Side = asrBottom
     Left = 717
     Height = 32
@@ -109,14 +109,14 @@ object Form1: TForm1
     Font.Quality = fqDraft
     Font.Style = [fsItalic]
     ParentFont = False
-    OnClick = Label1Click
+    OnClick = AuthorLabelClick
   end
-  object StringGrid1: TStringGrid
-    AnchorSideTop.Control = Button1
+  object DataGrid: TStringGrid
+    AnchorSideTop.Control = PlotInputButton
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = Label1
+    AnchorSideBottom.Control = AuthorLabel
     Left = 0
     Height = 273
     Top = 272

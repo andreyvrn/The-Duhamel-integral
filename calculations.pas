@@ -17,7 +17,7 @@ const
 
 function InputSignal(Time: double): double;
 function Kernel(dt: double): double;
-function Integral(verx, niz: double; n: word; Time: double): double;
+function Integral(upperBound, lowerBound: double; segments: word; Time: double): double;
 
 implementation
 
@@ -43,31 +43,30 @@ begin
             ExpFactor3 * exp(Rate3 * dt);
 end;
 
-function Integral(verx, niz: double; n: word; Time: double): double;
+function Integral(upperBound, lowerBound: double; segments: word; Time: double): double;
 var
-  d, y, S, tau: double;
-  k: integer;
+  step, value, sum, tau: double;
+  index: integer;
 begin
-  d := (verx - niz) / n;
-  S := 0;
-  for k := 0 to n do
+  step := (upperBound - lowerBound) / segments;
+  sum := 0;
+  for index := 0 to segments do
   begin
-    tau := niz + k * d;
-    y := InputSignal(tau) * Kernel(Time - tau);
-    if k <> 0 then
+    tau := lowerBound + index * step;
+    value := InputSignal(tau) * Kernel(Time - tau);
+    if index <> 0 then
     begin
-      if (k mod 2) = 0 then
+      if (index mod 2) = 0 then
       begin
-        if k <> n then
-          y := 2 * y;
+        if index <> segments then
+          value := 2 * value;
       end
       else
-        y := 4 * y;
+        value := 4 * value;
     end;
-    S := S + y;
+    sum := sum + value;
   end;
-  Result := d * S / 3;
+  Result := step * sum / 3;
 end;
 
 end.
-
