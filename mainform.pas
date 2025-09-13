@@ -1,4 +1,4 @@
-unit MainForm;
+unit MainFormUnit;
 
 {$mode objfpc}{$H+}
 
