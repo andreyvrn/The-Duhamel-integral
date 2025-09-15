@@ -1,0 +1,152 @@
+object MainForm: TMainForm
+  Left = 378
+  Height = 579
+  Top = 165
+  Width = 1040
+  Caption = 'Входной и выходной сигнал'
+  ClientHeight = 579
+  ClientWidth = 1040
+  LCLVersion = '2.2.0.1'
+  object SignalChart: TChart
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = PlotInputButton
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 1040
+    AxisList = <    
+      item
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelFont.Orientation = 900
+        Title.LabelBrush.Style = bsClear
+      end    
+      item
+        Alignment = calBottom
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelBrush.Style = bsClear
+      end>
+    BackColor = clLime
+    Foot.Brush.Color = clBtnFace
+    Foot.Font.Color = clBlue
+    Title.Brush.Color = clBtnFace
+    Title.Font.Color = clBlue
+    Title.Text.Strings = (
+      'TAChart'
+    )
+    Anchors = [akTop, akLeft, akRight]
+    Color = clLime
+    object InputSeries: TLineSeries
+      LinePen.Color = clFuchsia
+      LinePen.Style = psDot
+      LinePen.Width = 4
+    end
+    object OutputSeries: TLineSeries
+      LinePen.Color = 4227327
+      LinePen.Style = psDot
+      LinePen.Width = 4
+    end
+  end
+  object PlotInputButton: TButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = SignalChart
+    AnchorSideTop.Side = asrBottom
+    Left = 0
+    Height = 32
+    Top = 240
+    Width = 200
+    Caption = 'Чертить первый сигнал'
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -13
+    Font.Name = 'Book Antiqua'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold, fsItalic]
+    OnClick = PlotInputButtonClick
+    ParentFont = False
+    TabOrder = 1
+  end
+  object PlotOutputButton: TButton
+    AnchorSideTop.Control = SignalChart
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 840
+    Height = 32
+    Top = 240
+    Width = 200
+    Anchors = [akTop, akRight]
+    Caption = 'Чертить второй сигнал'
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -13
+    Font.Name = 'Book Antiqua'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold, fsItalic]
+    OnClick = PlotOutputButtonClick
+    ParentFont = False
+    TabOrder = 2
+  end
+  object AuthorLabel: TLabel
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = DataGrid
+    AnchorSideRight.Side = asrBottom
+    Left = 717
+    Height = 32
+    Top = 545
+    Width = 323
+    Anchors = [akRight]
+    Caption = 'Автор: Студент Студент'
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Color = clLime
+    Font.Height = -27
+    Font.Name = 'Book Antiqua'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsItalic]
+    ParentFont = False
+    OnClick = AuthorLabelClick
+  end
+  object DataGrid: TStringGrid
+    AnchorSideTop.Control = PlotInputButton
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = AuthorLabel
+    Left = 0
+    Height = 273
+    Top = 272
+    Width = 1040
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderStyle = bsNone
+    Color = 4259584
+    ColCount = 4
+    RowCount = 101
+    TabOrder = 3
+    ColWidths = (
+      47
+      158
+      168
+      271
+    )
+    Cells = (
+      4
+      0
+      0
+      '№'
+      1
+      0
+      'время'
+      2
+      0
+      'вход'
+      3
+      0
+      'выход'
+    )
+  end
+end
