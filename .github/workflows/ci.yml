@@ -18,10 +18,14 @@ jobs:
   build:
     name: Build (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    if: github.event_name != 'pull_request' || matrix.os == 'ubuntu-latest'
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-13]
+        os: >-
+          ${{ fromJSON(
+              github.event_name == 'pull_request' &&
+              '["ubuntu-latest"]' ||
+              '["windows-latest","ubuntu-latest","macos-13"]'
+            ) }}
 
     steps:
       - uses: actions/checkout@v5
