@@ -1,24 +1,41 @@
+---
 name: CI Lazarus
 
-on:
+'on':
   push:
-    branches: [ master ]
+    branches: [master]
     tags:
       - 'v*'
   pull_request:
-    branches: [ master ]
+    branches: [master]
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     name: Build (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    if: github.event_name != 'pull_request' || matrix.os == 'ubuntu-latest'
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-13]
 
     steps:
       - uses: actions/checkout@v5
+
+      - name: Cache Lazarus
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.lazarus
+            ~/.cache/fpc
+          key: >-
+            ${{ runner.os }}-lazarus-${{ hashFiles('**/*.pas') }}
+          restore-keys: |
+            ${{ runner.os }}-lazarus-
 
       - uses: gcarreno/setup-lazarus@v3
         with:
@@ -42,6 +59,7 @@ jobs:
         shell: bash
 
       - name: Package binary
+        if: github.event_name != 'pull_request'
         run: |
           if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
             7z a Duhamel_integral-windows.zip Duhamel_integral.exe
@@ -53,6 +71,7 @@ jobs:
         shell: bash
 
       - name: Upload Artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: package-${{ matrix.os }}
