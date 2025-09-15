@@ -16,56 +16,56 @@ const
   Rate3 = -98.932;
 
 function InputSignal(Time: double): double;
-function Kernel(dt: double): double;
-function Integral(upperBound, lowerBound: double; segments: word; Time: double): double;
+function Kernel(deltaTime: double): double;
+function Integral(lowerLimit, upperLimit: double; segmentCount: word; sampleTime: double): double;
 
 implementation
 
 
 function InputSignal(Time: double): double;
 var
-  arg: double;
+  normalizedTime: double;
 begin
   if Time <= TimeRange / 2 then
     Result := 1 - exp(-(Alpha * Time) / TimeRange)
   else
   begin
-    arg := Alpha * Time / TimeRange - Shift;
-    Result := (1 - exp(-Shift)) * exp(-sqr(arg));
+    normalizedTime := Alpha * Time / TimeRange - Shift;
+    Result := (1 - exp(-Shift)) * exp(-sqr(normalizedTime));
   end;
 end;
 
-function Kernel(dt: double): double;
+function Kernel(deltaTime: double): double;
 begin
-  Result := ExpFactor1 * exp(Rate1 * dt) +
-            ExpFactor2 * exp(Rate2 * dt) +
-            ExpFactor3 * exp(Rate3 * dt);
+  Result := ExpFactor1 * exp(Rate1 * deltaTime) +
+            ExpFactor2 * exp(Rate2 * deltaTime) +
+            ExpFactor3 * exp(Rate3 * deltaTime);
 end;
 
-function Integral(upperBound, lowerBound: double; segments: word; Time: double): double;
+function Integral(lowerLimit, upperLimit: double; segmentCount: word; sampleTime: double): double;
 var
-  step, value, sum, tau: double;
-  index: integer;
+  segmentWidth, weightedValue, total, integrationTime: double;
+  segmentIndex: integer;
 begin
-  step := (upperBound - lowerBound) / segments;
-  sum := 0;
-  for index := 0 to segments do
+  segmentWidth := (upperLimit - lowerLimit) / segmentCount;
+  total := 0;
+  for segmentIndex := 0 to segmentCount do
   begin
-    tau := lowerBound + index * step;
-    value := InputSignal(tau) * Kernel(Time - tau);
-    if index <> 0 then
+    integrationTime := lowerLimit + segmentIndex * segmentWidth;
+    weightedValue := InputSignal(integrationTime) * Kernel(sampleTime - integrationTime);
+    if segmentIndex <> 0 then
     begin
-      if (index mod 2) = 0 then
+      if (segmentIndex mod 2) = 0 then
       begin
-        if index <> segments then
-          value := 2 * value;
+        if segmentIndex <> segmentCount then
+          weightedValue := 2 * weightedValue;
       end
       else
-        value := 4 * value;
+        weightedValue := 4 * weightedValue;
     end;
-    sum := sum + value;
+    total := total + weightedValue;
   end;
-  Result := step * sum / 3;
+  Result := segmentWidth * total / 3;
 end;
 
 end.

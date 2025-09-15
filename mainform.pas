@@ -42,48 +42,40 @@ const
   SampleCount = 100;
   IntegrationSteps = 100;
 
-var
-  timeStep, currentTime: double;
-  iterationIndex: word;
-
 procedure TMainForm.PlotInputButtonClick(Sender: TObject);
 var
-  timePoint, inputStepSize, signalValue: double;
-  rowIndex: longint;
+  timePoint, sampleInterval, signalValue: double;
+  sampleIndex, totalSamples: Integer;
 begin
   InputSeries.Clear;
-  inputStepSize := 0.00005;
-  timePoint := 0;
-  rowIndex := 0;
+  sampleInterval := 0.00005;
+  totalSamples := Trunc(TimeRange / sampleInterval);
 
-  while timePoint + inputStepSize <= TimeRange do
+  for sampleIndex := 1 to totalSamples do
   begin
-    timePoint := timePoint + inputStepSize;
-    Inc(rowIndex);
-    DataGrid.Cells[0, rowIndex] := FloatToStr(rowIndex);
-    DataGrid.Cells[1, rowIndex] := FloatToStr(timePoint);
+    timePoint := sampleIndex * sampleInterval;
+    DataGrid.Cells[0, sampleIndex] := IntToStr(sampleIndex);
+    DataGrid.Cells[1, sampleIndex] := FloatToStr(timePoint);
     signalValue := InputSignal(timePoint);
-    DataGrid.Cells[2, rowIndex] := FloatToStr(signalValue);
+    DataGrid.Cells[2, sampleIndex] := FloatToStr(signalValue);
     InputSeries.AddXY(timePoint, signalValue);
   end;
 end;
 
 procedure TMainForm.PlotOutputButtonClick(Sender: TObject);
 var
-  integralValue: double;
+  integralValue, sampleInterval, timePoint: double;
+  sampleIndex: Integer;
 begin
   OutputSeries.Clear;
 
-  timeStep := TimeRange / SampleCount;
-  currentTime := 0;
-  iterationIndex := 0;
-  while currentTime + timeStep <= TimeRange do
+  sampleInterval := TimeRange / SampleCount;
+  for sampleIndex := 1 to SampleCount do
   begin
-    Inc(iterationIndex);
-    integralValue := Integral(currentTime, 0, IntegrationSteps, currentTime);
-    DataGrid.Cells[3, iterationIndex] := FloatToStr(integralValue);
-    OutputSeries.AddXY(currentTime, integralValue);
-    currentTime := currentTime + timeStep;
+    timePoint := sampleIndex * sampleInterval;
+    integralValue := Integral(0, timePoint, IntegrationSteps, timePoint);
+    DataGrid.Cells[3, sampleIndex] := FloatToStr(integralValue);
+    OutputSeries.AddXY(timePoint, integralValue);
   end;
 end;
 
