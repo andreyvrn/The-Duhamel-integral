@@ -18,7 +18,7 @@ jobs:
         os: [windows-latest, ubuntu-latest, macos-13]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - uses: gcarreno/setup-lazarus@v3
         with:
