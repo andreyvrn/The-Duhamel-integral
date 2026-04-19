@@ -71,7 +71,7 @@ jobs:
           path: ./artifacts
 
       - name: GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: ./artifacts/**/*
           body: ${{ github.event.release.body }}
@@ -90,7 +90,7 @@ jobs:
           path: ./artifacts
 
       - name: Upload Nightly Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: "Nightly Build"
           tag_name: "nightly"
